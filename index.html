@@ -3,38 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IND BHAI AI COMPLETE</title>
+    <title>IND BHAI AI V4</title>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- CORE STYLES --- */
-        :root { --bg-dark: #120f1f; --card-bg: #1c1829; --gold-primary: #f4c466; --gold-gradient: linear-gradient(90deg, #f4c466, #dcb057); --text-white: #ffffff; --input-bg: #110e16; --input-border: #2a2638; --error-red: #ff4757; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--bg-dark); min-height: 100vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle at center, #231f35 0%, #0d0b14 100%); overflow-x: hidden; transition: background 0.5s ease; }
+        :root {
+            --primary: #3b82f6;
+            --secondary: #6366f1;
+            --accent: #06b6d4;
+            --dark-bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .logo-icon i { font-size: 32px; color: white; }
+
+        .logo-text h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            white-space: nowrap;
+            background: linear-gradient(to right, #fff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* STACKED TITLE STYLE */
+        .hero-title-stack {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            line-height: 1.1;
+            margin: 30px 0;
+            text-transform: uppercase;
+        }
+
+        .hero-title-stack span {
+            display: block;
+            font-size: 36px;
+            letter-spacing: 2px;
+        }
+
+        .hero-title-stack .big-text {
+            font-size: 36px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4));
+        }
+
+        .hero-title-stack .small-text {
+            font-size: 36px;
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .primary-btn {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
         
-        /* LOGIN VIEW */
-        .login-view { width: 100%; display: flex; justify-content: center; align-items: center; }
-        .mobile-container { width: 100%; max-width: 300px; background-color: var(--card-bg); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px); transition: transform 0.3s ease; }
-        .avatar-container { margin-top: 20px; width: 90px; height: 90px; background: #332e42; border-radius: 50%; display: flex; justify-content: center; align-items: flex-end; margin-bottom: 20px; border: 2px solid rgba(255,255,255,0.1); animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-        .avatar-img { width: 85%; }
-        h1.login-title { font-family: 'Cinzel', serif; font-size: 24px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; }
-        p.subtitle { color: #fff; font-size: 13px; margin-bottom: 30px; opacity: 0.8; }
-        .input-group { width: 100%; background-color: var(--input-bg); border: 1px solid var(--input-border); border-radius: 8px; padding: 12px; margin-bottom: 30px; transition: all 0.3s ease; position: relative; }
-        .input-group.error-shake { border-color: var(--error-red); box-shadow: 0 0 15px rgba(255, 71, 87, 0.3); animation: shake 0.4s ease-in-out; }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
-        .license-code { width: 100%; background: transparent; border: none; color: var(--text-white); font-size: 15px; text-align: center; outline: none; }
-        .checkbox-container { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; color: #fff; font-size: 13px; cursor: pointer; user-select: none; }
-        .checkbox-container input { accent-color: var(--gold-primary); width: 16px; height: 16px; cursor: pointer; }
-        .btn-premium { width: 100%; background: var(--gold-gradient); border: none; color: #2b2005; font-weight: 700; padding: 16px; cursor: pointer; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 10px); transition: all 0.3s ease; margin-bottom: 40px; display: flex; justify-content: center; align-items: center; gap: 8px; }
-        .btn-premium.disabled { opacity: 0.3; cursor: not-allowed; filter: grayscale(100%); }
-        .btn-premium:not(.disabled):hover { transform: scale(1.02); box-shadow: 0 5px 20px rgba(244, 196, 102, 0.4); }
-        .footer-icons { display: flex; gap: 15px; }
-        .icon-btn { width: 40px; height: 40px; border-radius: 50%; background: #110e16; color: #fff; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.3s ease; }
-        .icon-btn:hover { background: #2a2638; transform: translateY(-5px); }
-        .tg { color: #0088cc; } .sup { color: #25d366; } .doc { color: #b166f4; }
-        .fa-spinner { animation: spin 1s linear infinite; }
+        .primary-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Telegram-style transparent button */
+        .telegram-btn {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+            margin-top: 20px;
+        }
+
+        .telegram-btn:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        /* --- Features Section --- */
+        .features-section { padding: 100px 20px; }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            margin-bottom: 60px;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        .feature-icon {
+            width: 70px; height: 70px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 28px;
+        }
+
+        .feature-title { font-size: 22px; margin-bottom: 10px; font-weight: 700; font-family: 'Poppins', sans-serif; }
+        .feature-description { color: #94a3b8; line-height: 1.6; }
+
+        /* --- Glass Box Styles (Used for Future & About) --- */
+        .glass-box-container {
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .glass-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            padding: 60px 40px;
+            border-radius: 30px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .box-brand-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            display: block;
+        }
+
+        .box-title {
+            font-size: 36px;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .box-desc {
+            font-size: 18px;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: #020617;
+            padding: 30px;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-title-stack .big-text { font-size: 36px; }
+            .hero-title-stack .small-text { font-size: 28px; }
+            .section-title { font-size: 32px; }
+            .box-brand-text { font-size: 24px; }
+            .box-title { font-size: 28px; }
+            .glass-box { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="logo-text">
+                <h1>IND BHAI AI V4</h1>
+            </div>
+        </div>
+
+        <div class="reveal">
+            <div class="hero-title-stack">
+                <span class="small-text">Ready to</span>
+                <span class="big-text">Transform</span>
+                <span class="small-text">Your</span>
+                <span class="big-text">Trading</span>
+            </div>
+            
+            <p class="hero-subtitle">Join thousands of successful traders using our server prediction platform today.</p>
+            
+            <!-- LINK CHANGED HERE: Points to app.html -->
+            <a href="app.html"><button class="btn primary-btn">
+                <i class="fas fa-rocket"></i> GET STARTED NOW
+            </button></a>
+            
+            <a href="https://t.me/+4hBKekQCDNE0MDI1"><button class="btn telegram-btn">
+                <i class="fab fa-telegram-plane"></i> JOIN OUR COMMUNITY
+            </button></a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <h2 class="section-title reveal">Powerful Features</h2>
+        
+        <div class="features-container">
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                <h3 class="feature-title">AI Algorithms</h3>
+                <p class="feature-description">Analyze market patterns with unprecedented accuracy and speed.</p>
+            </div>
+            
+            <div class="feature-card reveal" style="transition-delay: 0.2s">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h3 class="feature-title">Real-time Data</h3>
+                <p class="feature-description">Instant predictions that adapt to changing market conditions.</p>
+            </div>
+            
+            <div class="feature-card reveal" style="transition-delay: 0.4s">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3 class="feature-title">Secure Server</h3>
+                <p class="feature-description">Your data is encrypted end-to-end and never shared.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Section (Box with Content) -->
+    <section class="glass-box-container" id="future">
+        <div class="glass-box reveal">
+            <span class="box-brand-text">IND BHAI AI V4</span>
+            <h2 class="box-title">Experience the Future of Trading</h2>
+            <p class="box-desc">Our AI analyzes vast amounts of data to provide you with a significant advantage in the market.</p>
+            <!-- LINK CHANGED HERE ALSO -->
+            <a href="app.html"><button class="btn primary-btn">
+                GET STARTED NOW
+            </button></a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="glass-box-container" id="about" style="padding-top: 0;">
+        <div class="glass-box reveal">
+            <div class="feature-icon" style="margin-bottom: 20px;">
+                <i class="fas fa-server"></i>
+            </div>
+            <h2 class="box-title" style="color: var(--primary);">IND BHAI AI V4</h2>
+            <p class="box-desc">
+                We provide cutting-edge AI prediction technology for traders seeking to maximize their success in financial markets. Our algorithms deliver accurate, real-time insights.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 IND BHAI AI V4 SERVER. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Scroll Animation Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            
+            // Trigger Hero immediately
+            setTimeout(() => {
+                document.querySelector('.hero-section .reveal').classList.add('active');
+            }, 100);
+        });
+    </script>
+</body>
+</html>        .fa-spinner { animation: spin 1s linear infinite; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
         
         /* HACK PAGE STYLES */
